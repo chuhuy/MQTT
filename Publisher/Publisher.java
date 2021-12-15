@@ -3,11 +3,12 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.*;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 public class Publisher {
   private static int port = 9000;
   private static String defaultIPAddress = "127.0.0.1";
-  private final static String[] locations = { "bedroom", "bathroom", "garage", "kitchen", "living room" };
+  private final static String[] locations = { "bedroom", "bathroom", "garage", "kitchen", "living-room" };
   private final static String[] devices = { "temperature", "noise", "humidity", "light" };
   public static DataOutputStream oos;
   public static DataInputStream ois;
@@ -30,7 +31,6 @@ public class Publisher {
       if (autoMode)
         autoPublish();
       else {
-        oos.writeUTF("Test");
         manualPublish();
       }
 
@@ -94,7 +94,7 @@ public class Publisher {
       if (input.equals("@")) {
         break;
       } else if (Util.isNumeric(input)) {
-        publish(topic, input, oos);
+        publish(topic, input);
       } else {
         System.out.println("Invalid value");
       }
@@ -102,11 +102,24 @@ public class Publisher {
   }
 
   public static void autoPublish() {
-    String topic = "";
+    Random rand = new Random();
+    String selectedLocation = locations[rand.nextInt(locations.length)];
+    String selectedDevice = devices[rand.nextInt(devices.length)];
 
+    String topic = selectedLocation + "/" + selectedDevice;
+
+    for (int step = 0; step < 10; step++) {
+      String value = String.valueOf(rand.nextInt(0, 100));
+      publish(topic, value);
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException ex) {
+        ex.printStackTrace();
+      }
+    }
   }
 
-  public static void publish(String topic, String value, DataOutputStream oos) {
+  public static void publish(String topic, String value) {
     try {
       System.out.println("Publishing value " + value + " to topic " + topic);
       oos.writeUTF("PUBLISH " + topic + " " + value);
@@ -140,10 +153,10 @@ public class Publisher {
   public static void disconnect() {
     try {
       oos.writeUTF("DISCONNECT");
-      ois.close();
-      oos.close();
+      // ois.close();
+      // oos.close();
 
-      socket.close();
+      // socket.close();
     } catch (Exception e) {
     }
   }

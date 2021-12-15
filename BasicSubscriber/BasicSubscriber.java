@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 public class BasicSubscriber {
   private static int port = 9000;
   private static String defaultIPAddress = "127.0.0.1";
-  private final static String[] locations = { "bedroom", "bathroom", "garage", "kitchen", "living room" };
+  private final static String[] locations = { "bedroom", "bathroom", "garage", "kitchen", "living-room" };
   private final static String[] devices = { "temperature", "noise", "humidity", "light" };
   public static DataOutputStream oos;
   public static DataInputStream ois;
@@ -18,7 +18,7 @@ public class BasicSubscriber {
     if (!connectStatus) {
       disconnect();
     }
-    subscribeTopic("bedroom/temperature");
+    subscribeTopic("bathroom/noise");
 
     disconnect();
   }

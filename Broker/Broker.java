@@ -121,15 +121,16 @@ class ServerThread extends Thread {
             while (true) {
                 try {
                     String clientMessage = dataInputStream.readUTF();
+                    System.out.println(clientMessage);
                     String[] messageParts = clientMessage.split(" ");
 
                     if (clientMessage.equals("CONNECT")) {
                         dataOutputStream.writeUTF("CONNACK");
                         dataOutputStream.flush();
                     } else if (clientMessage.equals("DISCONNECT")) {
+                        MessageQueue.removeSubscriberFromAllTopic(socket.getPort());
                         dataInputStream.close();
                         dataOutputStream.close();
-                        MessageQueue.removeSubscriberFromAllTopic(socket.getPort());
                     } else if (messageParts[0].equals("SUBSCRIBE")) {
                         if (messageParts.length != 2) {
                             dataOutputStream.writeUTF("INVALID INPUT");
@@ -143,6 +144,13 @@ class ServerThread extends Thread {
                             dataOutputStream.flush();
                         } else {
                             MessageQueue.publish(messageParts[1], messageParts[2]);
+                        }
+                    } else if (messageParts[0].equals("UNSUBSCRIBE")) {
+                        if (messageParts.length != 2) {
+                            dataOutputStream.writeUTF("INVALID INPUT");
+                            dataOutputStream.flush();
+                        } else {
+                            MessageQueue.unsubscribe(messageParts[1], socket.getPort());
                         }
                     } else {
                         dataOutputStream.writeUTF("INVALID INPUT");
