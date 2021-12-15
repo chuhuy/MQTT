@@ -33,7 +33,6 @@ public class Publisher {
         oos.writeUTF("Test");
         manualPublish();
       }
-        // manualPublish(oos, ois);
 
       disconnect();
       isRunning = promptRetry();

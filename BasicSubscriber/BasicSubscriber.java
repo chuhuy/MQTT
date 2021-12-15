@@ -18,7 +18,7 @@ public class BasicSubscriber {
     if (!connectStatus) {
       disconnect();
     }
-    subscribeTopic("bedroom/noise");
+    subscribeTopic("bedroom/temperature");
 
     disconnect();
   }
