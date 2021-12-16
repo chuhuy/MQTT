@@ -153,10 +153,10 @@ public class Publisher {
   public static void disconnect() {
     try {
       oos.writeUTF("DISCONNECT");
-      // ois.close();
-      // oos.close();
+      ois.close();
+      oos.close();
 
-      // socket.close();
+      socket.close();
     } catch (Exception e) {
     }
   }
