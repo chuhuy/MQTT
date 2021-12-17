@@ -5,7 +5,7 @@ import java.util.*;
 import java.net.UnknownHostException;
 import java.util.Random;
 
-public class Publisher {
+public class BasicPublisher {
   private static int port = 9000;
   private static String defaultIPAddress = "127.0.0.1";
   private final static String[] locations = { "bedroom", "bathroom", "garage", "kitchen", "living-room" };
