@@ -1,0 +1,93 @@
+
+.background{
+    -fx-background-color: #13151a;
+}
+.button{
+    -fx-border-color: #d6cef5;
+    -fx-border-width: 1;
+    -fx-border-radius: 75%;
+    -fx-background-color: #13151a;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 18;
+    -fx-text-fill: #d6cef5;
+}
+.button:hover {
+    -fx-border-width: 1.15;
+   // -fx-border-color: #18de2f;
+   //-fx-text-fill: #18de2f;
+}
+#table{
+    -fx-text-background-color: white;
+}
+
+#value #time {
+    -fx-font-size: 20;
+}
+
+
+// Background color of the control itself
+.choice-box {
+  -fx-font-size:15;
+  -fx-background-color: #303338;
+  -fx-mark-color: #18de2f; // arrow color
+}
+
+// Selected item text color on the control itself
+.choice-box > .label {
+    -fx-text-fill: #F9F6F0;
+}
+// Background color of the whole context menu
+.choice-box .context-menu {
+    -fx-background-color: #303338;
+}
+// Focused item background color in the list
+.choice-box .menu-item:focused {
+    -fx-background-color: #4b33b0;
+}
+// Text color of non-focused items in the list
+.choice-box .menu-item > .label {
+    -fx-text-fill: #F9F6F0;
+ }
+// Text color of focused item in the list
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: #F9F6F0;
+ }
+
+.chart-series-line { -fx-stroke: #F9F6F0; }
+
+.chart {
+    -fx-padding: 10px;
+}
+
+.chart-content {
+    -fx-padding: 30px;
+}
+
+.axis-label {
+    -fx-text-fill: #F9F6F0;
+}
+
+.chart-plot-background {
+    -fx-background-color:transparent;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #F9F6F0;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #F9F6F0;
+}
+
+.chart-alternative-row-fill {
+    -fx-fill:transparent;
+    -fx-stroke: transparent;
+}
+
+.custom-chart .chart-line-symbol {
+    -fx-background-color: white ,red ;
+    -fx-background-radius: 5px;
+    -fx-background-radius: 75%;
+    -fx-background-insets: 0, 2.7;
+
+}
