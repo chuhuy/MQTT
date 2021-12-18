@@ -39,15 +39,15 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <LineChart fx:id="lineChart" alternativeRowFillVisible="false" horizontalZeroLineVisible="false" layoutX="270.0" layoutY="87.0" legendSide="TOP" mouseTransparent="true" opacity="0.8" pickOnBounds="false" prefHeight="386.0" prefWidth="550.0" style="-fx-background-color: #13151a; -fx-opacity: 0.6;" verticalZeroLineVisible="false">
+      <LineChart fx:id="lineChart" alternativeRowFillVisible="false" horizontalZeroLineVisible="false" layoutX="270.0" layoutY="87.0" legendSide="TOP" mouseTransparent="true" pickOnBounds="false" prefHeight="386.0" prefWidth="550.0" style="-fx-background-color: #13151a; -fx-opacity: 0.6;" verticalZeroLineVisible="false">
          <xAxis>
-            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" opacity="0.9" side="BOTTOM" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
+            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
                <tickLabelFont>
                   <Font size="10.0" />
                </tickLabelFont></NumberAxis>
          </xAxis>
          <yAxis>
-            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" opacity="0.9" side="LEFT" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
+            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="LEFT" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
                <tickLabelFont>
                   <Font size="10.0" />
                </tickLabelFont></NumberAxis>

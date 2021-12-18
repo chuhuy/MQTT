@@ -13,6 +13,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MainPubController implements Initializable {
@@ -37,6 +38,9 @@ public class MainPubController implements Initializable {
 
     @FXML
     ChoiceBox<String> sensorChoiceBox;
+
+    @FXML
+    Button randomGeneBtn;
 
     ArrayList<String> locationList = new ArrayList<>(List.of("bedroom", "bathroom", "garage", "kitchen", "living room"));
     ArrayList<String> sensorList = new ArrayList<>(List.of("temperature", "noise", "humidity", "light"));
@@ -64,6 +68,11 @@ public class MainPubController implements Initializable {
         }
         locationChoiceBox.getSelectionModel().select(selectedLocation);
         sensorChoiceBox.getSelectionModel().select(selectedSensor);
+
+        //
+        sendBtn.setDisable(true);
+        confirmBtn.setDisable(true);
+        randomGeneBtn.setDisable(true);
     }
 
     public void brokerPress(){
@@ -78,6 +87,9 @@ public class MainPubController implements Initializable {
             Publisher.disconnect();
             brokerStatus = !brokerStatus;
             System.out.println("CHƯA KẾT NỐI");
+            sendBtn.setDisable(true);
+            confirmBtn.setDisable(true);
+            randomGeneBtn.setDisable(true);
         }else{
             brokerBtn.setStyle("-fx-background-color:#000000,linear-gradient(#00ff11, #25fa34),linear-gradient(#12c91e, #29cc34),linear-gradient(#14a81e, #289e30);" +
                     "-fx-background-radius: 2,2,2,2;" +
@@ -88,6 +100,7 @@ public class MainPubController implements Initializable {
             Publisher.connect(defaultIPAddress, port);
             brokerStatus = !brokerStatus;
             System.out.println("ĐÃ KẾT NỐI");
+            confirmBtn.setDisable(false);
         }
     }
 
@@ -100,7 +113,10 @@ public class MainPubController implements Initializable {
             selectedSensor = sensorChoiceBox.getValue();
             String topic = selectedLocation + "/" + selectedSensor;
             sendBtnStatus = true;
+            inputValue.setText("");
             System.out.println(topic);
+            sendBtn.setDisable(false);
+            randomGeneBtn.setDisable(false);
         }
     }
 
@@ -110,11 +126,31 @@ public class MainPubController implements Initializable {
             String inputVal = inputValue.getText();
             if (Util.isNumeric(inputVal)) {
                 Publisher.publish(topic, inputVal);
-                System.out.println("sent");
             }
+            inputValue.setText("");
         }else{
             inputValue.setText("invalid value");
             System.out.println("cant send");
         }
+    }
+
+    public void generateRandom(){
+
+        Random rand = new Random();
+        String selectedLocation = locationChoiceBox.getValue();
+        String selectedSensor = sensorChoiceBox.getValue();
+
+        String topic = selectedLocation + "/" + selectedSensor;
+
+        for (int step = 0; step < 10; step++) {
+            String value = String.valueOf((int)Math.floor(Math.random() * 100));
+            Publisher.publish(topic, value);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        inputValue.setText("");
     }
 }

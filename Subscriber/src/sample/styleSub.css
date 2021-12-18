@@ -64,7 +64,7 @@
 }
 
 .axis-label {
-    -fx-text-fill: #F9F6F0;
+    -fx-text-fill: white;
 }
 
 .chart-plot-background {

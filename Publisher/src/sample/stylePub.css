@@ -13,7 +13,9 @@ AnchorPane{
 #label{
     -fx-text-fill:#F9F6F0;
 }
-
+TextField{
+    -fx-prompt-text-fill:#13151a;
+}
 // Background color of the control itself
 .choice-box {
   -fx-font-size:15;
@@ -40,4 +42,33 @@ AnchorPane{
 // Text color of focused item in the list
 .choice-box .menu-item:focused > .label {
     -fx-text-fill: #F9F6F0;
- }
+}
+
+#randomGeneBtn  {
+    -fx-border-color: #d6cef5;
+    -fx-border-width: 1;
+    -fx-border-radius: 75%;
+    -fx-background-color: #13151a;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 18;
+    -fx-text-fill: #d6cef5;
+}
+#confirmBtn{
+               -fx-border-color: #d6cef5;
+               -fx-border-width: 1;
+               -fx-border-radius: 75%;
+               -fx-background-color: #13151a;
+               -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+               -fx-font-size: 18;
+               -fx-text-fill: #d6cef5;
+}
+
+#sendBtn{
+            -fx-border-color: #d6cef5;
+            -fx-border-width: 1;
+            -fx-border-radius: 75%;
+            -fx-background-color: #13151a;
+            -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+            -fx-font-size: 18;
+            -fx-text-fill: #d6cef5;
+}
