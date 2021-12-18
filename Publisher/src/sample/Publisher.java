@@ -1,3 +1,5 @@
+package sample;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -5,7 +7,7 @@ import java.util.*;
 import java.net.UnknownHostException;
 import java.util.Random;
 
-public class BasicPublisher {
+public class Publisher {
   private static int port = 9000;
   private static String defaultIPAddress = "127.0.0.1";
   private final static String[] locations = { "bedroom", "bathroom", "garage", "kitchen", "living-room" };

@@ -24,13 +24,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.io.*;
 
-public class MainController implements Initializable{
+public class MainSubController implements Initializable{
     private Subscriber subscriber;
 
     //Scene change
-   // Stage stage;
-   // Scene scene;
-   // Parent root;
+    // Stage stage;
+    // Scene scene;
+    // Parent root;
 
     //choice box
     @FXML
