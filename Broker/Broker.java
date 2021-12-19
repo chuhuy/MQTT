@@ -126,7 +126,7 @@ class ServerThread extends Thread {
                     if (clientMessage.equals("CONNECT")) {
                         dataOutputStream.writeUTF("CONNACK");
                         dataOutputStream.flush();
-                    } else if (clientMessage.equals("QUIT")) {
+                    } else if (clientMessage.equals("DISCONNECT")) {
                         dataInputStream.close();
                         dataOutputStream.close();
                         MessageQueue.removeSubscriberFromAllTopic(socket.getPort());
