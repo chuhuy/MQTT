@@ -29,19 +29,22 @@ public class Subscriber {
         }
     }
 
-    public void subscribeTopic(String topic, ObservableList<Data> data) {
+    public void subscribeTopic(String topic, ObservableList<Data> data, Map<String, Integer> countMap) {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int count = 1;
                 try {
                     dataOutputStream.writeUTF("SUBSCRIBE " + topic);
                     while (true) {
                         String message = dataInputStream.readUTF();
-                        data.add(new Data(Integer.parseInt(message), count));
+                        String[] messageParts = message.split(" ");
+                        String sensor = messageParts[0].split("/")[1];
+                        System.out.println(message);
+                        int count = countMap.get(sensor);
+                        data.add(new Data(Integer.parseInt(messageParts[1]), count, messageParts[0]));
                         System.out.println("Message from broker: " + message);
-                        count ++;
+                        countMap.put(sensor, count + 1);
                     }
                 } catch(Exception e) {
                     e.printStackTrace();

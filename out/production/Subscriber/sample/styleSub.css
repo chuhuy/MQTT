@@ -53,7 +53,11 @@
     -fx-text-fill: #F9F6F0;
  }
 
-.chart-series-line { -fx-stroke: #F9F6F0; }
+
+.default-color0.chart-series-line { -fx-stroke: #a3e4f0; }
+.default-color1.chart-series-line { -fx-stroke: #b6f2b8; }
+.default-color2.chart-series-line { -fx-stroke: #c785f2; }
+.default-color3.chart-series-line { -fx-stroke: #e897a3; }
 
 .chart {
     -fx-padding: 10px;
@@ -91,3 +95,4 @@
     -fx-background-insets: 0, 2.7;
 
 }
+

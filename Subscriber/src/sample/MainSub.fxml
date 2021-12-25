@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -21,8 +22,8 @@
       <ChoiceBox fx:id="sensorChoiceBox" layoutX="416.0" layoutY="32.0" opacity="0.8" prefHeight="30.0" prefWidth="150.0" styleClass="choiceBox" />
       <TableView fx:id="table" layoutX="25.0" layoutY="87.0" prefHeight="385.0" prefWidth="214.0" style="-fx-background-color: #13151a; -fx-opacity: 0.75;">
         <columns>
-            <TableColumn fx:id="value" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #13151a; -fx-alignment: CENTER; -fx-border-width: 0.3px;" text="Giá trị" />
-            <TableColumn fx:id="time" editable="false" prefWidth="75.0" style="-fx-background-color: #13151a; -fx-alignment: CENTER; -fx-border-width: 0.3px;" text="Thời gian" />
+            <TableColumn fx:id="value" editable="false" prefWidth="60.799991607666016" sortable="false" style="-fx-background-color: #13151a; -fx-alignment: CENTER; -fx-border-width: 0.3px;" text="Value" />
+            <TableColumn fx:id="topic" editable="false" prefWidth="152.0" style="-fx-background-color: #13151a; -fx-alignment: CENTER; -fx-border-width: 0.3px;" text="Topic" />
 
         </columns>
          <columnResizePolicy>
@@ -39,19 +40,22 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <LineChart fx:id="lineChart" alternativeRowFillVisible="false" horizontalZeroLineVisible="false" layoutX="270.0" layoutY="87.0" legendSide="TOP" mouseTransparent="true" pickOnBounds="false" prefHeight="386.0" prefWidth="550.0" style="-fx-background-color: #13151a; -fx-opacity: 0.6;" verticalZeroLineVisible="false">
+      <LineChart fx:id="lineChart" alternativeRowFillVisible="false" horizontalZeroLineVisible="false" layoutX="267.0" layoutY="87.0" legendSide="TOP" mouseTransparent="true" pickOnBounds="false" prefHeight="399.0" prefWidth="566.0" style="-fx-background-color: #13151a; -fx-opacity: 0.6;" verticalZeroLineVisible="false">
          <xAxis>
-            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
+            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" prefHeight="0.0" prefWidth="498.0" side="BOTTOM" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
                <tickLabelFont>
                   <Font size="10.0" />
                </tickLabelFont></NumberAxis>
          </xAxis>
          <yAxis>
-            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="LEFT" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
+            <NumberAxis minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" prefHeight="349.0" prefWidth="0.0" side="LEFT" tickLabelGap="0.0" tickLength="6.0" tickUnit="0.0">
                <tickLabelFont>
                   <Font size="10.0" />
                </tickLabelFont></NumberAxis>
          </yAxis>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="3.0" top="3.0" />
+         </padding>
       </LineChart>
    </children>
 </AnchorPane>

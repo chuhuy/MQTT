@@ -3,10 +3,12 @@ package sample;
 public class Data {
     private int value;
     private long time;
+    private String topic ="";
 
-    public Data(int value, long time) {
+    public Data(int value, long time, String topic) {
         this.value = value;
         this.time = time;
+        this.topic = topic;
     }
 
     public int getValue() {
@@ -17,7 +19,9 @@ public class Data {
         return time;
     }
 
-
+    public String getTopic() {
+        return topic;
+    }
 
     public void setValue(int value) {
         this.value = value;
@@ -26,6 +30,8 @@ public class Data {
     public void setTime(long time) {
         this.time = time;
     }
-
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 
 }
