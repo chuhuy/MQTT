@@ -32,15 +32,47 @@ class MessageQueue {
 
     public static void publish(String topicName, String message) {
         if (topics.containsKey(topicName)) {
-            topics.get(topicName).addMessage(message);
+            topics.get(topicName).addMessage(topicName + " " + message);
         } else {
             Topic newTopic = new Topic();
-            newTopic.addMessage(message);
+            newTopic.addMessage(topicName + " " + message);
             topics.put(topicName, newTopic);
+        }
+
+        String[] topicNameParts = topicName.split("/");
+
+        if (topics.containsKey("*/*")) {
+            Map<Integer, DataOutputStream> topicSubscribers = topics.get("*/*").getSubscribers();
+
+            for (Integer portNumber : topicSubscribers.keySet()){
+                topics.get(topicName).addSubscriber(portNumber, topicSubscribers.get(portNumber));
+            }
+        }
+
+        if (topics.containsKey(topicNameParts[0] + "/*")) {
+            Map<Integer, DataOutputStream> topicSubscribers = topics.get(topicNameParts[0] + "/*").getSubscribers();
+
+            for (Integer portNumber : topicSubscribers.keySet()){
+                topics.get(topicName).addSubscriber(portNumber, topicSubscribers.get(portNumber));
+            }
         }
     }
 
     public static void subscribe(String topicName, int portNumber, DataOutputStream subscriber) {
+        String[] topicNameParts = topicName.split("/");
+
+        if (topicName.equals("*/*")) {
+            for (String topic : topics.keySet()) {
+                topics.get(topic).addSubscriber(portNumber, subscriber);
+            }
+        } else if (topicNameParts[1].equals("*")) {
+            for (String topic : topics.keySet()) {
+                if (topic.indexOf(topicNameParts[0]) == 0) {
+                    topics.get(topic).addSubscriber(portNumber, subscriber);
+                }
+            }
+        }
+
         if (topics.containsKey(topicName)) {
             topics.get(topicName).addSubscriber(portNumber, subscriber);
         } else {
@@ -70,6 +102,10 @@ class Topic {
         this.messages = new LinkedList<String>();
     }
 
+    public Map<Integer, DataOutputStream> getSubscribers() {
+        return this.subscribers;
+    }
+
     public void addSubscriber(int portNumber, DataOutputStream subscriber) {
         this.subscribers.put(portNumber, subscriber);
 
@@ -94,7 +130,7 @@ class Topic {
                     dataOutputStream.writeUTF(message);
                     dataOutputStream.flush();
                 } catch (IOException e) {
-                    System.out.println("Server Process Error: " + e.toString());
+                    System.out.println("Client disconnected when sending message");
                 }
             }
         }
